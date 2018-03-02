@@ -7,7 +7,7 @@
 
 ## Features
 - SSR-VUE
-- GraphQL
+<!-- - GraphQL -->
 
 
 
