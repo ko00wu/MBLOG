@@ -12,9 +12,6 @@ const TagType = require('./type/Tag')
 const PostEntity = require('./entity/Post')
 const TagEntity = require('./entity/Tag')
 
-// PostType = PostType()
-// TagType = TagType()
-
 const rootQueryType = new GraphQLObjectType({
   name: 'rootQueryType',
   fields: () => ({
@@ -22,7 +19,7 @@ const rootQueryType = new GraphQLObjectType({
     post: {
       type: PostType,
       args: {
-        index: {
+        id: {
           type: GraphQLInt
         }
       },

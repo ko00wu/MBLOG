@@ -1,15 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
 const vueConfig = require('./vue-loader.config')
+const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  devtool: isProd
-    ? false
-    : '#cheap-module-source-map',
+  devtool: isProd ? false : '#cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
@@ -17,7 +16,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'public': path.resolve(__dirname, '../public')
+      public: path.resolve(__dirname, '../public')
     }
   },
   module: {
@@ -49,6 +48,28 @@ module.exports = {
               fallback: 'vue-style-loader'
             })
           : ['vue-style-loader', 'css-loader']
+      },
+      {
+        test: /\.(sc|c)ss$/,
+        // extract css file from js file, that will reduce the js file size and optimize page loading.
+        // but it will increase the package time, so it should be only used in build file.
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?sourceMap',
+            {
+              loader: 'postcss-loader?sourceMap',
+              options: {
+                plugins: () => [
+                  autoprefixer({
+                    browsers: ['last 2 versions']
+                  })
+                ]
+              }
+            },
+            'sass-loader'
+          ]
+        })
       }
     ]
   },
@@ -66,7 +87,5 @@ module.exports = {
           filename: 'common.[chunkhash].css'
         })
       ]
-    : [
-        new FriendlyErrorsPlugin()
-      ]
+    : [new FriendlyErrorsPlugin()]
 }

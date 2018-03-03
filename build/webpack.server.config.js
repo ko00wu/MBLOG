@@ -3,6 +3,7 @@ const merge = require('webpack-merge')
 const base = require('./webpack.base.config')
 const nodeExternals = require('webpack-node-externals')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+const path = require('path')
 
 module.exports = merge(base, {
   target: 'node',
@@ -14,7 +15,7 @@ module.exports = merge(base, {
   },
   resolve: {
     alias: {
-      'create-api': './create-api-server.js'
+      '@api': path.resolve(__dirname, '../src/client/api')
     }
   },
   // https://webpack.js.org/configuration/externals/#externals

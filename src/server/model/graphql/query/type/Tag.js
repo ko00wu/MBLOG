@@ -11,6 +11,7 @@ const PostEntity = require('../entity/Post')
 const TagType = new GraphQLObjectType({
   name: 'TagType',
   fields: () => {
+    // 在此引用，避免循序引用出现空对象
     const PostType = require('./Post')
     return {
       id: {
@@ -23,9 +24,6 @@ const TagType = new GraphQLObjectType({
         type: new GraphQLNonNull(GraphQLString)
       },
       createdTime: {
-        type: GraphQLString
-      },
-      test: {
         type: GraphQLString
       },
       posts: {

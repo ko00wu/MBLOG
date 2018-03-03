@@ -110,7 +110,7 @@ function render(req, res) {
   }
 
   const context = {
-    title: 'Vue HN 2.0', // default title
+    title: 'ko00', // default title
     url: req.url
   }
   renderer.renderToString(context, (err, html) => {
@@ -129,10 +129,10 @@ app.get(
   isProd
     ? render
     : (req, res) => {
-        readyPromise.then(() => {
-          render(req, res)
-        })
-      }
+      readyPromise.then(() => {
+        render(req, res)
+      })
+    }
 )
 
 const port = process.env.PORT || 8080

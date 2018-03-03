@@ -13,9 +13,9 @@ export function createRouter() {
     mode: 'history',
     fallback: false,
     routes: [
-      { path: '/about', component: About },
-      { path: '/tags', component: Tags },
-      { path: '/', component: Home }
+      { path: '/about', component: About, name: 'About' },
+      { path: '/tags', component: Tags, name: 'Tags' },
+      { path: '/', component: Home, name: 'Home' }
     ]
   })
 }
