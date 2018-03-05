@@ -1,5 +1,7 @@
+const { cssLoaders } = require('./utils')
+
 module.exports = {
-  extractCSS: process.env.NODE_ENV === 'production',
+  loaders: cssLoaders({ extract: process.env.NODE_ENV === 'production' }),
   preserveWhitespace: false,
   postcss: [
     require('autoprefixer')({

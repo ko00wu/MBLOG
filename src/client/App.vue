@@ -45,18 +45,11 @@ export default {
         }
       ]
     }
-  },
-  beforeMount() {
-    // console.log('route:', this.$route)
   }
 }
 </script>
 
-<style lang="less">
-* {
-  margin: 0;
-  padding: 0;
-}
+<style lang="scss">
 #nav {
   position: absolute;
   top: 0;
