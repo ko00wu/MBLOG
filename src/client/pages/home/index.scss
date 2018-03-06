@@ -1,0 +1,45 @@
+// postItem部分
+.home__postListItem {
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  h2 {
+    margin: 30px 0 10px;
+    font-weight: 800;
+    font-size: 30px;
+    color: #404040;
+  }
+  h3 {
+    margin: 0 0 10px;
+    font-weight: 300;
+    font-size: 22px;
+    color: #404040;
+  }
+  .tip {
+    $tip_fz: 16px;
+    color: gray;
+    font-style: italic;
+    .a {
+      font-size: $tip_fz;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &.p {
+      font-size: $tip_fz;
+      margin: 0;
+    }
+  }
+}
+
+// home的media query部分
+@media (min-width: 768px) {
+  .home__postListItem {
+    h2 {
+      font-size: 36px;
+    }
+    h3 {
+      font-size: 28px;
+    }
+  }
+}

@@ -13,11 +13,6 @@ module.exports = merge(base, {
     filename: 'server-bundle.js',
     libraryTarget: 'commonjs2'
   },
-  resolve: {
-    alias: {
-      '@api': path.resolve(__dirname, '../src/client/api')
-    }
-  },
   // https://webpack.js.org/configuration/externals/#externals
   // https://github.com/liady/webpack-node-externals
   externals: nodeExternals({

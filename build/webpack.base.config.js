@@ -51,7 +51,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      public: path.resolve(__dirname, '../public')
+      public: path.resolve(__dirname, '../public'),
+      '@api': path.resolve(__dirname, '../src/client/api'),
+      '@store': path.resolve(__dirname, '../src/client/store')
     }
   },
   module: {

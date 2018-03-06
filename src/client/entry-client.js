@@ -4,9 +4,8 @@ import { createApp } from './app'
 import ProgressBar from './components/ProgressBar.vue'
 
 // global progress bar
-const bar = Vue.prototype.$bar = new Vue(ProgressBar).$mount()
+const bar = (Vue.prototype.$bar = new Vue(ProgressBar).$mount())
 document.body.appendChild(bar.$el)
-console.log('bar:', bar.$el)
 // a global mixin that calls `asyncData` when a route component's params change
 Vue.mixin({
   beforeRouteUpdate(to, from, next) {
@@ -15,7 +14,9 @@ Vue.mixin({
       asyncData({
         store: this.$store,
         route: to
-      }).then(next).catch(next)
+      })
+        .then(next)
+        .catch(next)
     } else {
       next()
     }
@@ -42,7 +43,7 @@ router.onReady(() => {
     const prevMatched = router.getMatchedComponents(from)
     let diffed = false
     const activated = matched.filter((c, i) => {
-      return diffed || (diffed = (prevMatched[i] !== c))
+      return diffed || (diffed = prevMatched[i] !== c)
     })
     const asyncDataHooks = activated.map(c => c.asyncData).filter(_ => _)
     if (!asyncDataHooks.length) {

@@ -1,5 +1,44 @@
+// 重置样式
+// * {
+//   padding: 0;
+//   margin: 0;
+// }
 html,
 body {
   padding: 0;
   margin: 0;
+  font-family: Lora, Times New Roman, serif;
+  font-size: 20px;
+}
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #666;
+}
+//  工具类
+.clear {
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    clear: both;
+  }
+}
+.ta-right {
+  text-align: right;
+}
+.h-50 {
+  height: 50px;
 }

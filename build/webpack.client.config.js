@@ -9,11 +9,6 @@ const config = merge(base, {
   entry: {
     app: './src/client/entry-client.js'
   },
-  resolve: {
-    alias: {
-      '@api': path.resolve(__dirname, '../src/client/api')
-    }
-  },
   plugins: [
     // strip dev-only code in Vue source
     new webpack.DefinePlugin({

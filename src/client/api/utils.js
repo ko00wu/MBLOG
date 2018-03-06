@@ -25,7 +25,6 @@ export async function fetch({
   success = () => {}
 }) {
   try {
-    console.log('请求前')
     const { data } = await axiosIns.request({
       method,
       params: {
@@ -37,7 +36,6 @@ export async function fetch({
        * 接受执行报错
        */
       success(data.data)
-      console.log('请求后')
     } catch (e) {
       console.warn(`接口${t}执行报错：\n错误信息：${e.message}`)
     }

@@ -2,6 +2,7 @@ import actions from './actions'
 import mutations from './mutations'
 
 export default {
+  namespaced: true,
   state: {
     posts: {
       isFinished: false,
@@ -12,6 +13,8 @@ export default {
       list: []
     },
     loading: false
+    // // 请求的时间差
+    // timeDiff: 0
   },
   getters: {
     posts: state => state.posts

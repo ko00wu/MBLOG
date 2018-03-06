@@ -1,0 +1,58 @@
+@media (min-width: 768px) {
+  // 头部导航
+  #nav {
+    background-color: transparent;
+    &.fixed {
+      background-color: rgba(160, 82, 45, 0.7);
+    }
+  }
+  .nav__toggleBtn {
+    display: none;
+  }
+  .nav__author {
+    a {
+      color: hsla(0, 0%, 100%, 0.7);
+    }
+  }
+  .nav__right {
+    display: block;
+  }
+  .nav__minibar {
+    display: none;
+  }
+  // banner
+  #banner {
+    height: 407px;
+    h1 {
+      margin-top: 0;
+      font-size: 80px;
+    }
+  }
+}
+
+@mixin rtPadding {
+  padding: 0 calc(15px + 5%);
+}
+@media (min-width: 544px) {
+  .rootContainer {
+    width: 576px;
+  }
+}
+@media (min-width: 768px) {
+  .rootContainer {
+    width: 720px;
+    @include rtPadding;
+  }
+}
+@media (min-width: 992px) {
+  .rootContainer {
+    width: 940px;
+    @include rtPadding;
+  }
+}
+@media (min-width: 1200px) {
+  .rootContainer {
+    width: 1140px;
+    @include rtPadding;
+  }
+}
