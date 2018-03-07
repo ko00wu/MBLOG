@@ -19,6 +19,8 @@
 
 <script>
 import { mapGetters, mapActions, mapState } from 'vuex'
+// 暂存绑定函数: 用来解绑window绑定的函数
+let tmpFun = null
 
 export default {
   name: 'Home',
@@ -42,14 +44,16 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.listenPostsByScroll.bind(this))
+    tmpFun = this.listenPostsByScroll.bind(this)
+    window.addEventListener('scroll', tmpFun)
   },
-  destroyed() {
-    window.removeEventListener('scroll', this.listenPostsByScroll.bind(this))
+  beforeDestroy() {
+    window.removeEventListener('scroll', tmpFun)
   },
   methods: {
     //
     listenPostsByScroll() {
+      console.log(this.$route.name)
       const homeEl = this.$refs['home']
       const doc_scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop
