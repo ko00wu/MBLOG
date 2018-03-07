@@ -53,7 +53,6 @@ export default {
   methods: {
     //
     listenPostsByScroll() {
-      console.log(this.$route.name)
       const homeEl = this.$refs['home']
       const doc_scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop
