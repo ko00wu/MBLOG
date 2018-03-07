@@ -1,5 +1,5 @@
 /**
- * Created by jack on 16-8-23.
+ * Created by ko00 on 18-8-23.
  */
 
 const { sortFn } = require('../../common/utils')
@@ -280,4 +280,4 @@ const POSTS_LIST = [
   }
 ]
 
-module.exports = POSTS_LIST.sort(sortFn('createdTime'), -1)
+module.exports = POSTS_LIST.sort(sortFn('createdTime', -1))

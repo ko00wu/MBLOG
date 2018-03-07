@@ -306,4 +306,4 @@ const TAGS_LIST = [
   }
 ]
 
-module.exports = TAGS_LIST.sort(sortFn('createdTime'), -1)
+module.exports = TAGS_LIST.sort(sortFn('createdTime', -1))

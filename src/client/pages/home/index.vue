@@ -44,6 +44,9 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.listenPostsByScroll.bind(this))
   },
+  destroyed() {
+    window.removeEventListener('scroll', this.listenPostsByScroll.bind(this))
+  },
   methods: {
     //
     listenPostsByScroll() {

@@ -81,7 +81,7 @@ export default {
   computed: mapState(['timeDiff']),
   watch: {
     $route() {
-      this.getCurPage()
+      this.getBannerMsg()
     }
   },
   beforeMount() {
@@ -115,7 +115,7 @@ export default {
       window.addEventListener('scroll', onscroll)
     },
     getBannerMsg() {
-      this.bannerMsg = this.navlist.find(c => c.name === this.$route.name)
+      this.bannerMsg = this.navlist.find(c => c.name === this.$route.name) || {}
     }
   }
 }

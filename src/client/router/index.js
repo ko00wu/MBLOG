@@ -16,7 +16,7 @@ export function createRouter() {
     routes: [
       { path: '/about', component: About, name: 'About' },
       { path: '/tags', component: Tags, name: 'Tags' },
-      { path: '/post/id', components: Post, name: 'Post' },
+      { path: '/post/:id', component: Post, name: 'Post' },
       { path: '/', component: Home, name: 'Home' }
     ]
   })

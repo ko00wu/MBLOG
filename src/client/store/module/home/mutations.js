@@ -1,5 +1,4 @@
 export const MUTATION_NAME = {
-  TOGGLE_LOADING: 'home/TOGGLE_LOADING',
   UPDATE_POSTS: 'home/UPDATE_POSTS'
 }
 

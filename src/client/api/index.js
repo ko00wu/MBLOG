@@ -40,9 +40,11 @@ export const getPostById = (id, success) => {
   const query = `{
     post(id:${Number(id)}){
       id,
+      name,
       title,
       subtitle,
       createdTime,
+      content,
       tags{
         id,
         name,

@@ -11,8 +11,7 @@ export default {
         size: 5
       },
       list: []
-    },
-    loading: false
+    }
   },
   getters: {
     posts: state => state.posts
