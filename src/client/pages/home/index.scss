@@ -32,6 +32,11 @@
   }
 }
 
+// home 不能再多的提示文本
+.home__noMore {
+  text-align: center;
+}
+
 // home的media query部分
 @media (min-width: 768px) {
   .home__postListItem {

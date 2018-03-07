@@ -7,6 +7,7 @@ Vue.use(Router)
 const Home = () => import('../pages/home/index.vue')
 const About = () => import('../pages/about/index.vue')
 const Tags = () => import('../pages/tags/index.vue')
+const Post = () => import('../pages/post/index.vue')
 
 export function createRouter() {
   return new Router({
@@ -15,6 +16,7 @@ export function createRouter() {
     routes: [
       { path: '/about', component: About, name: 'About' },
       { path: '/tags', component: Tags, name: 'Tags' },
+      { path: '/post/id', components: Post, name: 'Post' },
       { path: '/', component: Home, name: 'Home' }
     ]
   })

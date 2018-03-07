@@ -4,6 +4,9 @@ export const MUTATION_NAME = {
 }
 
 export default {
+  [MUTATION_NAME.TOGGLE_LOADING](state) {
+    state.loading = !state.loading
+  },
   [MUTATION_NAME.UPDATE_POSTS](state, { posts }) {
     if (!posts.length) {
       state.posts.isFinished = true

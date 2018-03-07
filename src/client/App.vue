@@ -1,42 +1,36 @@
 <template>
   <div id="app">
-    <nav id="nav" class="clear nav" :class="{fixed}">
-      <div class="nav__author"><router-link to="/" v-text="author"></router-link></div>
-      <ul class="nav__right">
-        <li v-for="item in navlist">
-          <router-link :to="item.path" v-text="item.name"></router-link>
-        </li>
-      </ul>
-      <div class="ta-right h-50"><button class="nav__toggleBtn" @click="handleToggleMiniNav">&#9776;</button></div>
-      <ul v-show="isMiniBar" class="nav__minibar clear">
-        <li v-for="item in navlist" :key="item.name" :class="{firstItem:item.name === 'home'}">
-          <router-link :to="item.path" v-text="item.name"></router-link>
-        </li>
-      </ul>
-    </nav>
-    <div id="banner" ref="banner" :style="{'background-image':`url(${currentPage.image || ''})`}">
-      <div class="banner__pageTitle">
-        <h1 v-text="currentPage.title || ''"></h1>
-        <hr>
-        <p v-text="currentPage.subtitle || ''"></p>
-      </div>
-    </div>
+    <!-- 全局挂载svg -->
+    <global-svg></global-svg>
+    <app-nav :author="author" :navlist="navlist" :fixed="fixed"></app-nav>
+    <banner :bannerMsg="bannerMsg" :isMajor="isMajor" ref="banner"></banner>
     <transition name="fade">
-      <router-view class="rootContainer" @onIsShowLoading="onSwitchShowLoading"></router-view>
+      <router-view class="container" @onIsShowLoading="onSwitchShowLoading"></router-view>
     </transition>
-    <div id="loading" v-show="isShowLoading">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
-    </div>
+    <loading v-show="isShowLoading"></loading>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import GlobalSvg from './components/Svg.vue'
+import AppNav from './components/Nav.vue'
+import AppFooter from './components/Footer.vue'
+import Banner from './components/Banner.vue'
+import Loading from './components/Loading.vue'
 
 export default {
   name: 'App',
+  components: {
+    GlobalSvg,
+    AppNav,
+    AppFooter,
+    Banner,
+    Loading
+  },
   data() {
+    // 导航列表
     const navlist = [
       {
         name: 'Home',
@@ -60,6 +54,8 @@ export default {
         subtitle: ''
       }
     ]
+    // 是否是主页
+    const isMajor = this.$route.name !== 'Post'
     return {
       // 配置部分
       config: {
@@ -71,15 +67,15 @@ export default {
       // 作者
       author: 'Ko00',
       // 当前页面信息
-      currentPage: {},
+      bannerMsg: {},
       // 导航列表
       navlist,
-      // 标记minibar是否显示
-      isMiniBar: false,
       // 超过768的时候，用来控制是否固定导航
       fixed: false,
       // loading的显示隐藏
-      isShowLoading: false
+      isShowLoading: false,
+      // 是否是主页
+      isMajor
     }
   },
   computed: mapState(['timeDiff']),
@@ -89,30 +85,13 @@ export default {
     }
   },
   beforeMount() {
-    this.getCurPage()
+    this.getBannerMsg()
   },
   mounted() {
-    this.checkIsFixedOByScroll()
+    this.checkIsFixedByScroll()
   },
   methods: {
-    // 事件
-    handleToggleMiniNav() {
-      this.isMiniBar = !this.isMiniBar
-    },
-    // 
-    // 方法
-    checkIsFixedOByScroll() {
-      const onscroll = () => {
-        const doc_scrollTop =
-          document.documentElement.scrollTop || document.body.scrollTop
-        const bannerElHeight = this.$refs['banner'].clientHeight
-        this.fixed = doc_scrollTop >= bannerElHeight
-      }
-      window.addEventListener('scroll', onscroll)
-    },
-    getCurPage() {
-      this.currentPage = this.navlist.find(c => c.name === this.$route.name)
-    },
+    // 监听函数
     onSwitchShowLoading(sign) {
       const timeDiff = this.timeDiff
       const minLoadTime = this.config.minLoadTime
@@ -124,6 +103,19 @@ export default {
         return
       }
       this.isShowLoading = sign
+    },
+    // 方法
+    checkIsFixedByScroll() {
+      const onscroll = () => {
+        const doc_scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop
+        const bannerElHeight = this.$refs['banner'].$el.clientHeight
+        this.fixed = doc_scrollTop >= bannerElHeight
+      }
+      window.addEventListener('scroll', onscroll)
+    },
+    getBannerMsg() {
+      this.bannerMsg = this.navlist.find(c => c.name === this.$route.name)
     }
   }
 }

@@ -13,6 +13,7 @@
         <p class="tip p">Posted on {{post.createdTime}}</p>
       </li>
     </ul>
+    <p class="home__noMore" v-if="posts.isFinished">没有更多了...</p>
   </main>
 </template>
 
@@ -23,7 +24,7 @@ export default {
   name: 'Home',
   computed: {
     ...mapState({
-      loading: state => state.home.loading
+      loading: state => state.loading
     }),
     ...mapGetters({
       posts: 'home/posts'

@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: Lora, Times New Roman, serif;
   font-size: 20px;
+  color: #404040;
 }
 button {
   border: none;
@@ -38,6 +39,9 @@ a {
 }
 .ta-right {
   text-align: right;
+}
+.ta-center {
+  text-align: center;
 }
 .h-50 {
   height: 50px;
