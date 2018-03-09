@@ -13,6 +13,7 @@ export function createRouter() {
   return new Router({
     mode: 'history',
     fallback: false,
+    scrollBehavior: () => ({ y: 0 }),
     routes: [
       { path: '/about', component: About, name: 'About' },
       { path: '/tags', component: Tags, name: 'Tags' },

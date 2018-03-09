@@ -1,5 +1,14 @@
 <template>
-  <div>tags</div>
+  <div class="tags">
+    <div v-for="tag in tags" :key="tag.id" class="tag">
+      <h2 class="tag__h2">{{tag.label}}</h2>
+      <ul>
+        <li v-for="post in tag.posts" :key="post.id" class="tag__post">
+          <router-link :to="`/post/${post.id}`" class="tag__post__link">{{post.title}}</router-link>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>

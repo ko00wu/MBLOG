@@ -86,14 +86,14 @@ export default {
   }
 }
 // post mediaQuery
-@media (min-width: 992px) {
-  #post {
-    width: 66%;
-  }
-}
 @media (min-width: 768px) {
   #post {
     width: 80%;
+  }
+}
+@media (min-width: 992px) {
+  #post {
+    width: 60%;
   }
 }
 </style>
