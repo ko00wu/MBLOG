@@ -11,6 +11,7 @@ export default {
   computed: mapGetters({
     post: 'post/post'
   }),
+  methods: {},
   asyncData({ store, route }) {
     const id = route.params.id
     return store.dispatch('post/loadPostById', { id })
