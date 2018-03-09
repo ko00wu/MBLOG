@@ -24,8 +24,18 @@ export default {
     bannerMsg: {
       type: Object,
       defaultValue: {}
-    },
-    isMajor: Boolean
+    }
+  },
+  data() {
+    const isMajor = this.$route.name !== 'Post'
+    return {
+      isMajor
+    }
+  },
+  watch: {
+    $route(val) {
+      this.isMajor = val.name !== 'Post'
+    }
   }
 }
 </script>

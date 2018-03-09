@@ -3,7 +3,7 @@
     <!-- 全局挂载svg -->
     <global-svg></global-svg>
     <app-nav :author="author" :navlist="navlist" :fixed="fixed"></app-nav>
-    <banner :bannerMsg="bannerMsg" :isMajor="isMajor" ref="banner"></banner>
+    <banner :bannerMsg="bannerMsg" ref="banner"></banner>
     <transition name="fade">
       <router-view class="container" @onIsShowLoading="onSwitchShowLoading"></router-view>
     </transition>
@@ -55,7 +55,7 @@ export default {
       }
     ]
     // 是否是主页
-    const isMajor = this.$route.name !== 'Post'
+    // const isMajor = this.$route.name !== 'Post'
     return {
       // 配置部分
       config: {
@@ -73,9 +73,9 @@ export default {
       // 超过768的时候，用来控制是否固定导航
       fixed: false,
       // loading的显示隐藏
-      isShowLoading: false,
-      // 是否是主页
-      isMajor
+      isShowLoading: false
+      // // 是否是主页
+      // isMajor
     }
   },
   computed: mapState(['timeDiff']),

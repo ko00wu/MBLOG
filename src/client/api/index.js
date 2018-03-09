@@ -62,10 +62,12 @@ export const getPostById = (id, success) => {
 /**
  * 获取标签列表
  * @param {Function} success - 成功的回调函数
+ * @param {String} tagName - 标签名
  */
-export const getTags = success => {
+export const getTags = (success, tagName = '') => {
+  console.log('tagName:', tagName)
   const query = `{
-    tags(name:${''}){
+    tags(name:${tagName || '""'}){
       id,
       name,
       label,
@@ -87,21 +89,21 @@ export const getTags = success => {
  * @param {String} tagName - 标签名
  * @param {Function} success - 成功的回调函数
  */
-export const getTagByName = (tagName, success) => {
-  const query = `{
-    tags(name:${tagName}){
-      id,
-      name,
-      label,
-      posts{
-        id,
-        title
-      }
-    }
-  }`
-  return fetch({
-    t: 'tag',
-    query,
-    success
-  })
-}
+// export const getTagByName = (tagName, success) => {
+//   const query = `{
+//     tags(name:${tagName}){
+//       id,
+//       name,
+//       label,
+//       posts{
+//         id,
+//         title
+//       }
+//     }
+//   }`
+//   return fetch({
+//     t: 'tag',
+//     query,
+//     success
+//   })
+// }
