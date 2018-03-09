@@ -36,5 +36,8 @@ yarn start # or npm start
 MIT
 
 ## Task
-- [x] 任务列表1
 
+* [ ] 线上部署
+* [ ] 持续集成
+* [ ] https 证书配置
+* [ ] 去 www
