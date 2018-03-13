@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "node ./src/server/app",
-    "start": "cross-env NODE_ENV=production node ./src/server/app",
-    "start:online": "npm run build && npm start",
+    "start": "npm run build && npm run bootstrap",
+    "bootstrap": "cross-env NODE_ENV=production node ./src/server/app",
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client":
       "cross-env NODE_ENV=production webpack --config build/webpack.client.config.js --progress --hide-modules",
