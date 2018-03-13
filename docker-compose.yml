@@ -1,0 +1,26 @@
+version: '3'
+services:
+  nginx:
+    image: "hub.c.163.com/ko00yg/nginx:0.12"
+    container_name: "nginx"
+    depends_on:
+      - node
+    ports: 
+      - "80:80"
+      - "443:443"
+    tty: true
+    volumes:
+      - /home/ko00/html:/html
+      - /home/ko00/cert:/cert
+      - /home/ko00/config:/config
+    # restart: always
+  node:
+    image: "hub.c.163.com/ko00yg/node-dev:latest"
+    container_name: " node"
+    ports:
+      - "8080:8080"
+    tty: true
+    volumes:
+      - /www:/www
+
+
