@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "node ./src/server/app",
-    "start": "cross-env NODE_ENV=production node ./src/server/app",
+    "start": " node ./www",
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client":
       "cross-env NODE_ENV=production webpack --config build/webpack.client.config.js --progress --hide-modules",
