@@ -5,7 +5,7 @@ services:
     container_name: "nginx"
     depends_on:
       - node
-    ports: 
+    ports:
       - "80:80"
       - "443:443"
     tty: true
@@ -16,7 +16,7 @@ services:
     # restart: always
   node:
     image: "hub.c.163.com/ko00yg/node-dev:latest"
-    container_name: " node"
+    container_name: "node"
     ports:
       - "8080:8080"
     tty: true
