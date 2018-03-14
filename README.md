@@ -33,10 +33,6 @@ yarn run build # or npm run build
 yarn start # or npm start
 ```
 
-## License
-
-MIT
-
 ## Task
 
 * [x] 线上部署
@@ -44,3 +40,7 @@ MIT
 * [x] 去 www
 * [x] 思索静态资源的存放方式（解决 post 页面的 banner 空白的问题）
 * [ ] 持续集成
+
+## License
+
+MIT
