@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 // 判断是线上环境还是测试环境
-// const BASE_URL =
-//   process.env.NODE_ENV !== 'production'
-//     ? 'http://localhost:8080/'
-//     : 'http://www.imko00.com:8080'
-const BASE_URL = 'http://www.imko00.com:8080/'
+const BASE_URL =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:8080/'
+    : 'https://imko00.com/'
+// const BASE_URL = 'https://imko00.com/'
 
 const axiosIns = axios.create({
   baseURL: BASE_URL + 'api/v1'
