@@ -1,6 +1,8 @@
 # MBLOG
 
 > ko00 的个人博客
+>
+> 链接地址：[https://imko00.com](https://imko00.com)
 
 ## Preview
 
