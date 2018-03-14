@@ -87,7 +87,7 @@ export default {
       post: 'post/post'
     }),
     bannerMsg() {
-      const isMajor = this.isMajor
+      // const isMajor = this.isMajor
       let bannerMsg
       if (this.isMajor) {
         bannerMsg = this.navlist.find(c => c.name === this.$route.name)
