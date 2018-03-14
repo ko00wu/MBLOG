@@ -5,7 +5,6 @@ const BASE_URL =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:8080/'
     : 'https://imko00.com/'
-// const BASE_URL = 'https://imko00.com/'
 
 const axiosIns = axios.create({
   baseURL: BASE_URL + 'api/v1'
