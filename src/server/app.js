@@ -78,8 +78,8 @@ app.use('/service-worker.js', serve('../../dist/service-worker.js'))
 app.use(
   '/api/v1',
   graphqlHTTP({
-    schema: model,
-    graphiql: true
+    schema: model
+    // graphiql: true
   })
 )
 // since this app has no user-specific content, every page is micro-cacheable.
@@ -129,10 +129,10 @@ app.get(
   isProd
     ? render
     : (req, res) => {
-      readyPromise.then(() => {
-        render(req, res)
-      })
-    }
+        readyPromise.then(() => {
+          render(req, res)
+        })
+      }
 )
 
 const port = process.env.PORT || 8080

@@ -14,6 +14,7 @@ export default {
   methods: {},
   asyncData({ store, route }) {
     const id = route.params.id
+    console.log('asyncData post')
     return store.dispatch('post/loadPostById', { id })
   },
   mounted() {}

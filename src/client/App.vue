@@ -3,7 +3,7 @@
     <!-- 全局挂载svg -->
     <global-svg></global-svg>
     <app-nav :author="author" :navlist="navlist" :fixed="fixed"></app-nav>
-    <banner :bannerMsg="bannerMsg" ref="banner"></banner>
+    <banner :bannerMsg="bannerMsg" ref="banner" :isMajor="isMajor"></banner>
     <transition name="fade">
       <router-view class="container" @onIsShowLoading="onSwitchShowLoading"></router-view>
     </transition>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import GlobalSvg from './components/Svg.vue'
 import AppNav from './components/Nav.vue'
 import AppFooter from './components/Footer.vue'
@@ -67,7 +67,7 @@ export default {
       // 作者
       author: 'Ko00',
       // 当前页面信息
-      bannerMsg: {},
+      // bannerMsg: {},
       // 导航列表
       navlist,
       // 超过768的时候，用来控制是否固定导航
@@ -78,14 +78,28 @@ export default {
       // isMajor
     }
   },
-  computed: mapState(['timeDiff']),
-  watch: {
-    $route() {
-      this.getBannerMsg()
+  computed: {
+    isMajor() {
+      return this.$route.name !== 'Post'
+    },
+    ...mapState(['timeDiff']),
+    ...mapGetters({
+      post: 'post/post'
+    }),
+    bannerMsg() {
+      const isMajor = this.isMajor
+      let bannerMsg
+      if (this.isMajor) {
+        bannerMsg = this.navlist.find(c => c.name === this.$route.name)
+      } else {
+        const post = this.post
+        bannerMsg = {
+          image: `/public/blog/${post.name}/${post.createdTime}.jpg`,
+          ...post
+        }
+      }
+      return bannerMsg || {}
     }
-  },
-  beforeMount() {
-    this.getBannerMsg()
   },
   mounted() {
     this.checkIsFixedByScroll()
@@ -113,9 +127,6 @@ export default {
         this.fixed = doc_scrollTop >= bannerElHeight
       }
       window.addEventListener('scroll', onscroll)
-    },
-    getBannerMsg() {
-      this.bannerMsg = this.navlist.find(c => c.name === this.$route.name) || {}
     }
   }
 }

@@ -4,12 +4,11 @@
       <h1 v-text="bannerMsg.title || ''"></h1>
       <template v-if="isMajor">
         <hr>
-        <p v-text="bannerMsg.subtitle || ''"></p>
       </template>
+      <p v-text="bannerMsg.subtitle || ''" class="subtitle"></p>
       <template v-if="!isMajor">
         <span class="tip" v-for="(tag,tIndex) in bannerMsg.tags" :key="tag.name">
-          <router-link class="a" :to="`/tags?name=${tag.name}`" v-text="tag.label"></router-link>
-          {{(tIndex < post.tags.length - 1?',':'')}}
+          <router-link class="a" :to="`/tags?name=${tag.name}`" v-text="tag.label"></router-link>{{tIndex === (bannerMsg.tags.length - 1) ? '':'，'}}
         </span>
         <p class="tip p">Posted on {{bannerMsg.createdTime || ''}}</p>
       </template>
@@ -24,18 +23,8 @@ export default {
     bannerMsg: {
       type: Object,
       defaultValue: {}
-    }
-  },
-  data() {
-    const isMajor = this.$route.name !== 'Post'
-    return {
-      isMajor
-    }
-  },
-  watch: {
-    $route(val) {
-      this.isMajor = val.name !== 'Post'
-    }
+    },
+    isMajor: Boolean
   }
 }
 </script>
@@ -55,6 +44,7 @@ export default {
   top: 50%;
   left: 50%;
   z-index: 2;
+  width: calc(100% - 30px);
   transform: translate(-50%, -50%);
   color: #fff;
   h1 {
@@ -84,7 +74,20 @@ export default {
   }
   &.minor {
     h1 {
+      text-align: left;
       font-size: 35px;
+    }
+    .subtitle {
+      font-size: 24px;
+    }
+    .tip {
+      color: #fff;
+      font-family: Lora, Times New Roman, serif;
+      font-size: 20px;
+    }
+    .a {
+      color: #fff;
+      font-size: 20px;
     }
   }
 }
@@ -98,11 +101,21 @@ export default {
     }
   }
   .banner__pageTitle {
+    width: 80%;
     &.minor {
       h1 {
-        font-size: 55px;
+        font-size: 55px !important;
+      }
+      .subtitle {
+        font-size: 30px;
       }
     }
+  }
+}
+// banner mediaQuery
+@media (min-width: 992px) {
+  .banner__pageTitle {
+    width: 60%;
   }
 }
 

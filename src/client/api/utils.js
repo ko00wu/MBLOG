@@ -3,7 +3,7 @@ import axios from 'axios'
 // 判断是线上环境还是测试环境
 const BASE_URL =
   process.env.NODE_ENV !== 'production'
-    ? 'http://localhost:8080/'
+    ? 'http://localhost:8081/'
     : 'https://imko00.com/'
 
 const axiosIns = axios.create({
